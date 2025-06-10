@@ -1,27 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { FiSun, FiMoon, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-import About from './components/About';
-import Education from './components/Education';
-import Experience from './components/Experience';
-import Skills from './components/Skills';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import Home from './components/Home';
+import Projects from './components/Projects';
+import AboutIntro from './components/About/AboutIntro';
+import AboutSkills from './components/About/AboutSkills';
+import AboutCertificates from './components/About/AboutCertificates';
+import AboutEducation from './components/About/AboutEducation';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+const AboutMe = () => (
+  <div className="space-y-8">
+    <AboutIntro />
+    <AboutSkills />
+    <AboutCertificates />
+    <AboutEducation />
+  </div>
+);
+
 const TABS = [
-  { name: 'About', component: <About /> },
-  { name: 'Education', component: <Education /> },
-  { name: 'Experience', component: <Experience /> },
-  { name: 'Skills', component: <Skills /> },
+  { name: 'Home', component: <Home /> },
+  { name: 'About Me', component: <AboutMe /> },
+  { name: 'Projects', component: <Projects /> },
   { name: 'Contact', component: <Contact /> },
 ];
 
 function ThemeToggle() {
   const [dark, setDark] = useState(() => localStorage.theme === "dark");
-  React.useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-    localStorage.theme = dark ? "dark" : "light";
+
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+    }
   }, [dark]);
+
   return (
     <button
       onClick={() => setDark((d) => !d)}
@@ -33,38 +52,80 @@ function ThemeToggle() {
   );
 }
 
-function SocialBar() {
-  return (
-    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
-      <a href="mailto:megswin6581@gmail.com" className="group" target="_blank" rel="noopener noreferrer">
-        <FiMail className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition" />
-      </a>
-      <a href="https://linkedin.com/in/megan-serafina" className="group" target="_blank" rel="noopener noreferrer">
-        <FiLinkedin className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition" />
-      </a>
-      <a href="https://github.com/" className="group" target="_blank" rel="noopener noreferrer">
-        <FiGithub className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition" />
-      </a>
-    </div>
-  );
-}
-
 export default function App() {
   const [activeTab, setActiveTab] = useState(0);
+  const [dark, setDark] = useState(() => localStorage.theme === "dark");
+
+  // For theme toggle in ThemeToggle and particles
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+    }
+  }, [dark]);
+
+  // Particle options for dark/light
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
+
+  const particlesOptions = {
+    background: {
+      color: {
+        value: dark ? "#0f172a" : "#f1f5f9"
+      }
+    },
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onClick: { enable: true, mode: "push" },
+        onHover: { enable: true, mode: "repulse" },
+        resize: true
+      },
+      modes: {
+        push: { quantity: 4 },
+        repulse: { distance: 100, duration: 0.4 }
+      }
+    },
+    particles: {
+      color: { value: dark ? "#60a5fa" : "#6366f1" },
+      links: {
+        color: dark ? "#60a5fa" : "#6366f1",
+        distance: 150,
+        enable: true,
+        opacity: 0.3,
+        width: 1
+      },
+      collisions: { enable: false },
+      move: {
+        direction: "none",
+        enable: true,
+        outModes: { default: "bounce" },
+        random: false,
+        speed: 1.2,
+        straight: false
+      },
+      number: { density: { enable: true, area: 800 }, value: 50 },
+      opacity: { value: 0.5 },
+      shape: { type: "circle" },
+      size: { value: { min: 1, max: 5 } }
+    },
+    detectRetina: true
+  };
 
   return (
-    <div className="relative w-screen min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-blue-950 overflow-x-hidden">
-      {/* Animated background blobs */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.25 }}
-        style={{
-          background: "radial-gradient(circle at 20% 40%, #3b82f6 0%, transparent 60%), radial-gradient(circle at 80% 60%, #6366f1 0%, transparent 70%)"
-        }}
+    <div className="relative w-screen min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white overflow-x-hidden">
+      {/* Live animated background */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={particlesOptions}
+        className="fixed inset-0 z-0"
       />
-      <SocialBar />
-      {/* Main content below header */}
+      {/* Main content area */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 py-8">
         {/* Theme toggle at the top right */}
         <div className="flex justify-end mb-4">
@@ -75,17 +136,17 @@ export default function App() {
           {TABS.map((tab, idx) => (
             <button
               key={tab.name}
-              className={`px-4 py-2 rounded-t-lg font-semibold transition relative
+              className={`px-4 py-2 rounded-t-lg font-semibold border-b-2 transition relative
                 ${activeTab === idx
-                  ? 'bg-gray-800 text-blue-400 shadow'
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+                  ? 'bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 border-blue-500 dark:border-blue-400 shadow'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-transparent hover:bg-gray-300 dark:hover:bg-gray-600'}`}
               onClick={() => setActiveTab(idx)}
             >
               {tab.name}
               {activeTab === idx && (
                 <motion.div
                   layoutId="tab-underline"
-                  className="absolute left-0 right-0 -bottom-1 h-1 bg-blue-500 rounded"
+                  className="absolute left-0 right-0 -bottom-1 h-1 bg-blue-500 dark:bg-blue-400 rounded"
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
@@ -100,7 +161,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.4 }}
-            className="bg-gray-800 rounded-b-lg shadow p-6 min-h-[300px]"
+            className="bg-gray-100 dark:bg-gray-800 rounded-b-lg shadow p-6 min-h-[300px] text-gray-800 dark:text-gray-100 border border-gray-300 dark:border-gray-700"
           >
             {TABS[activeTab].component}
           </motion.div>
