@@ -1,6 +1,6 @@
 export default function AboutEducation() {
   return (
-    <div className="bg-gray-800 rounded-xl shadow-lg p-6 transition-shadow hover:shadow-2xl">
+    <div id="education" className="p-6">
       <h3 className="text-lg font-semibold text-blue-300 mb-3">Education</h3>
       <div>
         <div className="font-semibold text-gray-200">Bachelor of Computer Science (AI), Swinburne University of Technology Sarawak</div>

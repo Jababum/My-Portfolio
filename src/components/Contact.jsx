@@ -2,7 +2,7 @@ import { FiMail, FiLinkedin, FiGithub } from "react-icons/fi";
 
 export default function Contact() {
   return (
-    <section>
+    <section className="flex flex-col items-center justify-center min-h-[60vh] text-center">
       <h2 className="text-xl font-bold mb-2 text-blue-700">Get in Touch</h2>
       <div className="mb-2">
         <span className="font-semibold">Email:</span>{" "}
@@ -12,9 +12,6 @@ export default function Contact() {
       </div>
       <div className="mb-2">
         <span className="font-semibold">Phone:</span> +6010-9338876
-      </div>
-      <div className="mb-2">
-        <span className="font-semibold">Birthdate:</span> 20-09-2004
       </div>
       <div>
         <span className="font-semibold">LinkedIn:</span>{" "}

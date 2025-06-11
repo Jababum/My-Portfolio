@@ -2,9 +2,9 @@ import { FiPhone, FiMail, FiLinkedin, FiCalendar, FiMapPin, FiGift } from "react
 
 export default function AboutIntro() {
   return (
-    <div className="bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-8 transition-shadow hover:shadow-2xl">
+    <div id="intro" className="p-6">
       <img
-        src="/profile.jpg"
+        src="/MeganPhoto.JPG"
         alt="Megan Serafina Chen Jie"
         className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-blue-500 shadow transition-transform hover:scale-105"
       />
