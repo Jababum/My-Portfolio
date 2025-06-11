@@ -18,26 +18,30 @@ const sections = [
 
 export default function AboutMe() {
 	return (
-		<div className="w-full min-h-screen flex flex-col md:flex-row items-stretch p-4 md:p-8 relative overflow-hidden">
+		<div className="w-full min-h-screen flex flex-col md:flex-row items-stretch p-4 md:p-8 relative">
 			<SparklesBackground />
 			{/* Sidebar: sticky, left-aligned, no border, flush left */}
-			<aside className="hidden md:flex flex-col gap-2 bg-[#172554] rounded-xl p-4 min-w-[180px] sticky top-24 self-start h-fit md:mr-8 items-start">
-				<div className="mb-4">
-					<div className="text-xs uppercase tracking-widest text-blue-300 font-bold mb-2">
-						About Me
+			<div className="hidden md:block min-w-[260px] max-w-[280px] mr-8">
+				<aside
+					className="flex flex-col gap-4 bg-[#172554] rounded-xl p-6 w-full items-start sticky top-8"
+				>
+					<div className="mb-4">
+						<div className="text-xs uppercase tracking-widest text-blue-300 font-bold mb-2">
+							About Me
+						</div>
 					</div>
-				</div>
-				{sections.map((section) => (
-					<a
-						key={section.id}
-						href={`#${section.id}`}
-						className="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-200 hover:bg-blue-900 hover:text-white font-medium transition w-full text-left"
-					>
-						<span className="text-blue-400">{section.icon}</span>
-						{section.label}
-					</a>
-				))}
-			</aside>
+					{sections.map((section) => (
+						<a
+							key={section.id}
+							href={`#${section.id}`}
+							className="flex items-center gap-2 px-3 py-3 rounded-lg text-blue-200 hover:bg-blue-900 hover:text-white font-medium transition w-full text-left text-base"
+						>
+							<span className="text-blue-400">{section.icon}</span>
+							{section.label}
+						</a>
+					))}
+				</aside>
+			</div>
 			{/* Main content */}
 			<motion.section
 				className="space-y-8 w-full max-w-3xl mx-auto"
