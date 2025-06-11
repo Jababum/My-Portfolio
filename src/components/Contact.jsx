@@ -1,8 +1,10 @@
 import { FiMail, FiLinkedin, FiGithub } from "react-icons/fi";
+import SparklesBackground from "./SparklesBackground";
 
 export default function Contact() {
   return (
-    <section className="flex flex-col items-center justify-center min-h-[60vh] text-center">
+    <section className="flex flex-col items-center justify-center min-h-[60vh] text-center relative overflow-hidden">
+      <SparklesBackground />
       <h2 className="text-xl font-bold mb-2 text-blue-700">Get in Touch</h2>
       <div className="mb-2">
         <span className="font-semibold">Email:</span>{" "}

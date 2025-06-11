@@ -32,17 +32,6 @@ export default function AboutSkills() {
           <span className="flex items-center gap-1 hover:text-blue-400 transition"><SiCisco />Cisco Packet Tracer</span>
         </div>
       </div>
-      <div>
-        <span className="font-semibold text-gray-400">Languages:</span>
-        <div className="flex flex-wrap gap-3 mt-1 text-gray-200 items-center">
-          <span className="flex items-center gap-1 hover:text-blue-400 transition"><FaLanguage />English</span>
-          <span className="flex items-center gap-1 hover:text-blue-400 transition"><FaLanguage />Bahasa Malaysia</span>
-          <span className="flex items-center gap-1 hover:text-blue-400 transition"><FaLanguage />Mandarin</span>
-          <span className="flex items-center gap-1 hover:text-blue-400 transition"><FaLanguage />Hokkien</span>
-          <span className="flex items-center gap-1 hover:text-blue-400 transition"><FaLanguage />Hakka</span>
-          <span className="flex items-center gap-1 hover:text-blue-400 transition"><FaLanguage />Teochew</span>
-        </div>
-      </div>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { FiUser, FiStar, FiAward, FiBookOpen, FiActivity } from "react-icons/fi";
+import { FaLanguage } from "react-icons/fa";
+import SparklesBackground from "../SparklesBackground";
 import AboutIntro from "./AboutIntro";
 import AboutInterests from "./AboutInterests";
 import AboutSkills from "./AboutSkills";
@@ -16,7 +18,8 @@ const sections = [
 
 export default function AboutMe() {
 	return (
-		<div className="w-full min-h-screen flex flex-col md:flex-row items-stretch p-4 md:p-8">
+		<div className="w-full min-h-screen flex flex-col md:flex-row items-stretch p-4 md:p-8 relative overflow-hidden">
+			<SparklesBackground />
 			{/* Sidebar: sticky, left-aligned, no border, flush left */}
 			<aside className="hidden md:flex flex-col gap-2 bg-[#172554] rounded-xl p-4 min-w-[180px] sticky top-24 self-start h-fit md:mr-8 items-start">
 				<div className="mb-4">
@@ -46,6 +49,36 @@ export default function AboutMe() {
 					About Me
 				</h1>
 				<AboutIntro />
+				{/* Languages section with consistent margin */}
+				<div className="mb-8 pl-6">
+					<span className="font-semibold text-gray-400">Languages:</span>
+					<div className="flex flex-wrap gap-3 mt-1 text-gray-200 items-center">
+						<span className="flex items-center gap-1 hover:text-blue-400 transition">
+							<FaLanguage />
+							English
+						</span>
+						<span className="flex items-center gap-1 hover:text-blue-400 transition">
+							<FaLanguage />
+							Bahasa Malaysia
+						</span>
+						<span className="flex items-center gap-1 hover:text-blue-400 transition">
+							<FaLanguage />
+							Mandarin
+						</span>
+						<span className="flex items-center gap-1 hover:text-blue-400 transition">
+							<FaLanguage />
+							Hokkien
+						</span>
+						<span className="flex items-center gap-1 hover:text-blue-400 transition">
+							<FaLanguage />
+							Hakka
+						</span>
+						<span className="flex items-center gap-1 hover:text-blue-400 transition">
+							<FaLanguage />
+							Teochew
+						</span>
+					</div>
+				</div>
 				<div id="interests">
 					<AboutInterests />
 				</div>
